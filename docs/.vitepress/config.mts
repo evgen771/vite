@@ -9,8 +9,8 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Домой', link: '/' },
+      { text: 'Заметки', link: '/markdown-examples' }
     ],
 
     sidebar: [
