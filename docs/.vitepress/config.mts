@@ -18,7 +18,7 @@ export default defineConfig({
         text: 'Заметки',
         collapsed: true,
         items: [
-          { text: 'Markdown', link: '/markdown' },
+          { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
           { text: 'VitePress', link: '/vitepress' },
           { text: 'Hi', link: '/hi' },
           { text: 'Hi', link: '/ex/hi_too' }
