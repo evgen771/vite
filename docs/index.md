@@ -21,7 +21,10 @@ features:
       title: Преимущества
       details: Автонастройка приложений при входе в систему исходя из настроек.
 
-    - title: Обновление
+    - icon:
+      dark: /icons/shield-dark.svg
+      light: /icons/shield-light.svg
+      title: Обновление
       details: Простое обновление через репозиторий Portage на протяжении всего жизненного цикла.
       
     - title:  Совместимость
