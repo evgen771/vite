@@ -15,6 +15,8 @@ hero:
       link: /vitepress
 
 features:
+    - icon: bolt-dark.svg
+    - icon: bolt-light.svg
     - title: Преимущества
       details: Автонастройка приложений при входе в систему исходя из настроек.
     - title: Обновление
