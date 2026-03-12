@@ -15,10 +15,7 @@ hero:
       link: /vitepress
 
 features:
-    - icon:
-        dark: /bolt-dark.svg
-        
-      title: Feature 
+123    - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
