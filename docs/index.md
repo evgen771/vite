@@ -15,7 +15,7 @@ hero:
       link: /vitepress
 
 features:
-123    - title: Feature 
+    - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
