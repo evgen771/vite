@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Мои заметки на все случаи ..."
-  text: "Сделано с помощью VitePress Site"
+  text: "Сделано с помощью VitePress"
   tagline: "Шпаргалки.Самое необходимое"
   actions:
     - theme: brand
