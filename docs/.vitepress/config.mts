@@ -15,11 +15,11 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Заметки',
+        text: 'Calculate',
         collapsed: true,
         items: [
           { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
-          { text: 'VitePress', link: '/vitepress' },
+          { text: 'About Calculate', link: '/calculate/about' },
           { text: 'Hi', link: '/hi' },
           { text: 'Hi', link: '/ex/hi_too' }
         ]
