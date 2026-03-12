@@ -2,10 +2,12 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/vite/',
+
   title: "My Awesome Project",
   description: "A VitePress Site",
+
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
@@ -38,10 +40,4 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
   }
-})
-
-import { defineConfig } from 'vitepress'
-
-export default defineConfig({
-  base: '/vite/'
 })
