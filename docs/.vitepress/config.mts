@@ -43,7 +43,8 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'vk', link: 'https://vk.com/jenit777' },
-      { icon: 'vk', link: 'https://vk.com/club215896332' }
+      { icon: 'vk', link: 'https://vk.com/club215896332' },
+      { icon: 'github', link: 'https://evgen771.github.io/' }
     ]
   }
 })
