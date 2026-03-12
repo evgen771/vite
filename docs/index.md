@@ -15,11 +15,14 @@ hero:
       link: /vitepress
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    - icon:
+      dark: /bolt-dark.svg
+      light: /bolt-light.svg
+    - title: Feature A
+      details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    - title: Feature B
+      details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    - title: Feature C
+      details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
