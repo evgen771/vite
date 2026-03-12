@@ -1,4 +1,4 @@
-## Собирать все из исходиков:
+## Собирать все из исходиков
 
 Бинарность лечится раскомментированием `FEATURES="-getbinpkg"` в `/etc/portage/make.conf/custom`
 
@@ -38,7 +38,7 @@ www-client/firefox -wayland -wifi -pulseaudio -telemetry -system-png L10N="-be -
 
 `emerge -av firefox`— программа выводит всю доступную информацию о пакете, включая USE-флаги, полное имя, размер, категорию и т. д.. 
 
-## В Calculate информация о пакете:
+## В Calculate информация о пакете
 
 - Красным цветом отмечены активные USE-флаги
 
@@ -52,11 +52,11 @@ www-client/firefox -wayland -wifi -pulseaudio -telemetry -system-png L10N="-be -
 
 ---
 
-## Вопрос - Ответ:
+## Вопрос - Ответ
 
 - Бинарность лечится раскомментированием `FEATURES="-getbinpkg"` в `/etc/portage/make.conf/custom`
 
-## Решено: 
+## Решено
 
 - Какие флаги поставить в `Calculate linux`?
 
