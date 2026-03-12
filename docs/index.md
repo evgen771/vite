@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Мои заметки..."
+  name: "Заметки о Calculate"
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
   actions:
