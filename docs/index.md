@@ -18,11 +18,11 @@ features:
     - icon:
       dark: /bolt-dark.svg
       light: /bolt-light.svg
-    - title: Feature A
+    - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    - title: Feature B
+    - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    - title: Feature C
+    - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
