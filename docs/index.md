@@ -15,11 +15,11 @@ hero:
       link: /vitepress
 
 features:
-    - title: Автонастройка: 
-      details: приложений при входе в систему исходя из настроек
-    - title: Feature 
-      details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    - title: Feature 
-      details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    - title: Преимущества
+      details: Автонастройка приложений при входе в систему исходя из настроек.
+    - title: Обновление
+      details: Простое обновление через репозиторий Portage на протяжении всего жизненного цикла.
+    - title:  Совместимость
+      details: Полная совместимость с Gentoo с поддержкой собственного репозитория бинарных пакетов.
 ---
 
