@@ -25,11 +25,11 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Examples 2',
+        text: 'Дубликат',
         collapsed: true,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
+          { text: 'Markdown', link: '/markdown' },
+          { text: 'VitePress', link: '/vitepress' },
           { text: 'Hi', link: '/hi' },
           { text: 'Hi', link: '/ex/hi_too' }
         ]
