@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "Мои заметки на все случаи ..."
-  text: "Сделано с помощью VitePress"
-  tagline: "Шпаргалки.Самое необходимое"
+  name: "Мои заметки..."
+  text: "Сделано c VitePress"
+  tagline: "Шпаргалки.Самое необходимое."
   actions:
     - theme: brand
       text: Markdown
