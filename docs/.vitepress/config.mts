@@ -39,3 +39,9 @@ export default defineConfig({
     ]
   }
 })
+
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  base: '/vite/'
+})
