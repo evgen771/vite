@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Мои заметки на все случаи ..."
+  text: "Сделано с помощью VitePress Site"
+  tagline: "Шпаргалки.Самое необходимое"123
   actions:
     - theme: brand
       text: Markdown
