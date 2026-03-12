@@ -16,8 +16,8 @@ hero:
 
 features:
     - icon: 
-        dark: /bolt-dark.svg
-        light: /bolt-light.svg
+        dark: /icons/bolt-dark.svg
+        light: /icons/bolt-light.svg
       title: Преимущества
       details: Автонастройка приложений при входе в систему исходя из настроек.
 
