@@ -18,8 +18,8 @@ export default defineConfig({
         text: 'Calculate',
         collapsed: true,
         items: [
-          { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
           { text: 'About Calculate', link: '/calculate/about' },
+          { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
           { text: 'Hi', link: '/hi' },
           { text: 'Hi', link: '/ex/hi_too' }
         ]
