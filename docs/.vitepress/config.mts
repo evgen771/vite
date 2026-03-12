@@ -10,7 +10,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Домой', link: '/' },
-      { text: 'Заметки', link: '/markdown' }
+      { text: 'Заметки', link: '/markdown' },
     ],
 
     sidebar: [
@@ -35,6 +35,11 @@ export default defineConfig({
         ]
       }
     ],
+
+      outline: {
+      level: [2, 3],
+      label: 'На этой странице'
+    },
 
     socialLinks: [
       { icon: 'vk', link: 'https://vk.com/jenit777' },
