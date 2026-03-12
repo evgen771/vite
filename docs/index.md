@@ -26,11 +26,11 @@ features:
         light: /icons/shield-light.svg
       title: Обновление
       details: Простое обновление через репозиторий Portage на протяжении всего жизненного цикла.
-      
+
     - icon: 
         dark: /icons/bolt-dark.svg
         light: /icons/bolt-light.svg      
-    - title:  Совместимость
+      title:  Совместимость
       details: Полная совместимость с Gentoo с поддержкой собственного репозитория бинарных пакетов.
 ---
 
