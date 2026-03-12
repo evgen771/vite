@@ -8,7 +8,7 @@ export default defineConfig({
   description: "Сделано с VitePress",
 
   themeConfig: {
-    logo: '/icons/harry.svg'
+    logo: '/icons/harry.svg',
     nav: [
       { text: 'Домой', link: '/' },
       { text: 'Заметки', link: '/markdown' },
