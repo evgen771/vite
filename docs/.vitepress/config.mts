@@ -20,7 +20,7 @@ export default defineConfig({
         items: [
           { text: 'About Calculate', link: '/calculate/about' },
           { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
-          { text: 'Hi', link: '/hi' },
+          { text: 'Вопрос - Ответ', link: '/calculate/calculate_ask' },
           { text: 'Hi', link: '/ex/hi_too' }
         ]
       },
