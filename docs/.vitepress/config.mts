@@ -5,7 +5,7 @@ export default defineConfig({
   base: '/vite/',
 
   title: "Заметки",
-  description: "Сделано с помощью VitePress",
+  description: "Сделано с VitePress",
 
   themeConfig: {
     nav: [
