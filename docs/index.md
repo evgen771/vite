@@ -15,8 +15,8 @@ hero:
       link: /vitepress
 
 features:
-    - title: Feature 
-      details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    - title: Автонастройка: 
+      details: приложений при входе в систему исходя из настроек
     - title: Feature 
       details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     - title: Feature 
