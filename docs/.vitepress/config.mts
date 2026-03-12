@@ -15,7 +15,7 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Заметки',
         collapsed: true,
         items: [
           { text: 'Markdown', link: '/markdown' },
