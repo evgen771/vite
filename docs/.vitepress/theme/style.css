@@ -32,13 +32,22 @@
 .VPHero::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, #bd34fe, transparent 70%);
+  width: 900px;
+  height: 900px;
+
+  background: radial-gradient(
+    circle,
+    rgba(189, 52, 254, 0.35) 0%,
+    rgba(189, 52, 254, 0.25) 25%,
+    rgba(189, 52, 254, 0.15) 45%,
+    rgba(189, 52, 254, 0.08) 60%,
+    rgba(189, 52, 254, 0.02) 75%,
+    transparent 90%
+  );
+
   filter: blur(120px);
-  opacity: 0.5;
-  top: -150px;
-  left: -150px;
+  top: -250px;
+  left: -250px;
   z-index: -1;
 }
 
@@ -46,13 +55,22 @@
 .VPHero::after {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, #41d1ff, transparent 70%);
+  width: 900px;
+  height: 900px;
+
+  background: radial-gradient(
+    circle,
+    rgba(65, 209, 255, 0.35) 0%,
+    rgba(65, 209, 255, 0.25) 25%,
+    rgba(65, 209, 255, 0.15) 45%,
+    rgba(65, 209, 255, 0.08) 60%,
+    rgba(65, 209, 255, 0.02) 75%,
+    transparent 90%
+  );
+
   filter: blur(120px);
-  opacity: 0.5;
-  bottom: -150px;
-  right: -150px;
+  bottom: -250px;
+  right: -250px;
   z-index: -1;
 }
 
