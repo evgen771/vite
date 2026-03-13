@@ -25,6 +25,7 @@ export default defineConfig({
           { text: 'Hi', link: '/ex/hi_too' }
         ]
       },
+      
       {
         text: 'Дубликат',
         collapsed: true,
