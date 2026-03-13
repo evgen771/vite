@@ -21,7 +21,8 @@
 
 ## Установка
 
-Пакет обычно находится в категории `app-portage/eix`.
+Пакет обычно находится в категории:   
+`app-portage/eix`
 
 `emerge app-portage/eix`  
 `emerge -av eix`
