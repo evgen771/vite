@@ -6,3 +6,10 @@
     #41d1ff
   );
 }
+.VPHero .image {
+  background: radial-gradient(
+    circle,
+    rgba(189, 52, 254, 0.2),
+    transparent 70%
+  );
+}
