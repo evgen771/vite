@@ -57,8 +57,8 @@
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #324d6d, #bd34fe);
-  filter: blur(160px);
+  background: radial-gradient(circle, #4979b4, #bd34fe);
+  filter: blur(160px);123
   opacity: 0.35;
   bottom: -200px;
   right: -200px;
