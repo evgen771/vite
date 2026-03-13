@@ -44,7 +44,7 @@
   filter: blur(140px);
 
   top: -450px;
-  left: -300px;
+  right: -300px;
 
   z-index: -1;
 }
