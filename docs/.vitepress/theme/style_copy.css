@@ -1,0 +1,68 @@
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #bd34fe,
+    #41d1ff
+  );
+}
+
+/*:root {
+  --vp-home-hero-name-color: transparent;
+
+  --vp-home-hero-name-background: linear-gradient(
+    120deg,
+    #bd34fe 30%,
+    #41d1ff
+  );
+}*/
+
+/*размер логотипа
+.VPHero .image img {
+  max-width: 180px;
+}*/
+
+.VPHero {
+  position: relative;
+  overflow: hidden;
+}
+
+.VPHero::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, #41d1ff, #bd34fe);
+  filter: blur(180px);
+  opacity: 0.35;
+  top: -200px;
+  left: -200px;
+  z-index: -1;
+}
+
+.VPHero .container::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #01432b, transparent);
+  filter: blur(140px);
+  opacity: 0.25;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.VPHero::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #153255, #bd34fe);
+  filter: blur(160px);
+  opacity: 0.35;
+  bottom: -200px;
+  right: -200px;
+  z-index: -1;
+}
+
