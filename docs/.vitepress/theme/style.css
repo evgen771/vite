@@ -26,7 +26,7 @@
   position: relative;
 }
 
-.VPHero::before {
+.VPHero::after {
   content: "";
   position: absolute;
 
@@ -49,7 +49,7 @@
   z-index: -1;
 }
 
-.VPHero::after {
+/*.VPHero::after {
   content: "";
   position: absolute;
   width: 1400px;
@@ -69,4 +69,4 @@
   bottom: -450px;
   right: -300px;
   z-index: -1;
-}
+}*/
