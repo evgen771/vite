@@ -8,7 +8,7 @@ hero:
   tagline: "Шпаргалки.Самое необходимое."
   image:
       src: /callogo.png
-      alt: 
+      alt: cal
     
 actions:
     - theme: brand
