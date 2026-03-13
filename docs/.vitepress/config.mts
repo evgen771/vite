@@ -22,7 +22,7 @@ export default defineConfig({
           { text: 'About Calculate', link: '/calculate/about' },
           { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
           { text: 'Вопрос - Ответ', link: '/calculate/calculate_ask' },
-          { text: 'Hi', link: '/ex/hi_too' }
+          { text: 'Команда eix', link: '/calculate/eix' }
         ]
       },
       
