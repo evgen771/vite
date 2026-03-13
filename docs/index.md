@@ -8,7 +8,7 @@ hero:
   tagline: "Шпаргалки.Самое необходимое."
   image:
       src: /
-      alt: Calculate
+      alt: 
     
 actions:
     - theme: brand
