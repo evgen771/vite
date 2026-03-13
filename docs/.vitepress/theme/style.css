@@ -31,11 +31,11 @@
   position: absolute;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, #ff6a00, #ff0000);
+  background: radial-gradient(circle, #41d1ff, #bd34fe);
   filter: blur(180px);
   opacity: 0.35;
   top: -200px;
-  left: -200px;
+  left: -200px;123
   z-index: -1;
 }
 
