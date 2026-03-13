@@ -6,7 +6,6 @@ hero:
   name: "Заметки о Calculate"
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
-    
   actions:
     - theme: brand
       text: Markdown
