@@ -7,7 +7,7 @@ hero:
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
   image:
-      src: /calculate2.png
+      src: /
       alt: Calculate
     
 actions:
