@@ -39,6 +39,19 @@
   z-index: -1;
 }
 
+.VPHero .container::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #00ffa6, transparent);
+  filter: blur(140px);
+  opacity: 0.25;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .VPHero::after {
   content: "";
   position: absolute;
