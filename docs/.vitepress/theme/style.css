@@ -13,3 +13,6 @@
     transparent 70%
   );
 }
+.VPHero .image img {
+  max-width: 220px;
+}
