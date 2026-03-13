@@ -7,8 +7,8 @@ hero:
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
   image:
-      src: /callogo.png
-      alt: cal
+      src: 
+      alt: 
     
 actions:
     - theme: brand
