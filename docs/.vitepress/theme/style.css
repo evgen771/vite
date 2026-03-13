@@ -44,7 +44,7 @@
   position: absolute;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #00ffa6, transparent);
+  background: radial-gradient(circle, #01432b, transparent);
   filter: blur(140px);
   opacity: 0.25;
   top: 50%;
