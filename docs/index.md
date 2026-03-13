@@ -9,7 +9,7 @@ hero:
   
 image:
     src: /calculate.png
-    alt: GNOME
+    alt: Calculate
     
 actions:
     - theme: brand
