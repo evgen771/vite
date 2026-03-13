@@ -7,7 +7,7 @@ hero:
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
     
-actions:
+  actions:
     - theme: brand
       text: Markdown
       link: /markdown
