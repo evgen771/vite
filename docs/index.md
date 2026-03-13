@@ -7,7 +7,7 @@ hero:
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
   image:
-      src: /
+      src: /callogo.png
       alt: 
     
 actions:
