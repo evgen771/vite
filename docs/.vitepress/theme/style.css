@@ -22,3 +22,36 @@
   max-width: 180px;
 }*/
 
+.VPHero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* левый градиент */
+.VPHero::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #bd34fe, transparent 70%);
+  filter: blur(120px);
+  opacity: 0.5;
+  top: -150px;
+  left: -150px;
+  z-index: -1;
+}
+
+/* правый градиент */
+.VPHero::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #41d1ff, transparent 70%);
+  filter: blur(120px);
+  opacity: 0.5;
+  bottom: -150px;
+  right: -150px;
+  z-index: -1;
+}
+
