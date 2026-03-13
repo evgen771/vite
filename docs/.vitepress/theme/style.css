@@ -17,6 +17,7 @@
   );
 }
 
+/*размер логотипа*/
 .VPHero .image img {
   max-width: 180px;
 }
