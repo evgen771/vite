@@ -23,7 +23,7 @@
 
 Пакет обычно находится в категории `app-portage/eix`.
 
-`emerge app-portage/eix`
+`emerge app-portage/eix`  
 `emerge -av eix`
 
 *В Calculate уже предустановлена*
