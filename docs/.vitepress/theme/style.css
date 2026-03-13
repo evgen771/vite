@@ -25,6 +25,7 @@
 .VPHero {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 /* левый градиент */
