@@ -23,7 +23,8 @@ export default defineConfig({
           { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
           { text: 'Вопрос - Ответ', link: '/calculate/calculate_ask' },
           { text: 'Команда eix', link: '/calculate/eix' },
-          { text: 'Команда emerge', link: '/calculate/emerge' }
+          { text: 'Команда emerge', link: '/calculate/emerge' },
+          { text: 'Цвета отображения USE-флагов', link: '/calculate/color_use_emerge' }
         ]
       },
       
