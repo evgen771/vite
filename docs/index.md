@@ -18,19 +18,19 @@ features:
     - icon: 
         dark: /icons/bolt-dark.svg
         light: /icons/bolt-light.svg
-      title: Преимущества
-      details: Автонастройка приложений при входе в систему исходя из настроек.
+      title: Slackware Linux
+      details: от Патрика Волкердинга — это... Усовершенствованная операционная система Linux, разработанная с двойной целью: удобство использования и стабильность.
+
+    - icon: 
+        dark: /icons/bolt-dark.svg
+        light: /icons/bolt-light.svg      
+      title:  Calculate Linux
+      details: это дистрибутив Linux, он основан на проекте Gentoo Linux
 
     - icon:
         dark: /icons/shield-dark.svg
         light: /icons/shield-light.svg
       title: Обновление
       details: Простое обновление через репозиторий Portage на протяжении всего жизненного цикла.
-
-    - icon: 
-        dark: /icons/bolt-dark.svg
-        light: /icons/bolt-light.svg      
-      title:  Совместимость
-      details: Полная совместимость с Gentoo с поддержкой собственного репозитория бинарных пакетов.
 ---
 

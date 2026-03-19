@@ -29,7 +29,7 @@ export default defineConfig({
       },
       
       {
-        text: 'Дубликат',
+        text: 'Slackware',
         collapsed: true,
         items: [
           { text: 'Markdown', link: '/markdown' },
