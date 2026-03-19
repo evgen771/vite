@@ -25,6 +25,6 @@ features:
         dark: /icons/bolt-dark.svg
         light: /icons/bolt-light.svg      
       title:  Calculate Linux
-      details: Дистрибутив Linux, основан на проекте Gentoo Linux.
+      details: Дистрибутив Linux основан на проекте Gentoo Linux.
 ---
 
