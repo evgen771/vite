@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Calculate. Slackware."
+  name: "Slackware"
   text: "Сделано c VitePress"
   tagline: "Шпаргалки.Самое необходимое."
   actions:
