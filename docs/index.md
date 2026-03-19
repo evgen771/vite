@@ -26,11 +26,5 @@ features:
         light: /icons/bolt-light.svg      
       title:  Calculate Linux
       details: Дистрибутив Linux, основан на проекте Gentoo Linux.
-
-    - icon:
-        dark: /icons/shield-dark.svg
-        light: /icons/shield-light.svg
-      title: Обновление
-      details: Простое обновление через репозиторий Portage на протяжении всего жизненного цикла.
 ---
 
