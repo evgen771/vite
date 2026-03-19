@@ -25,13 +25,13 @@ features:
         dark: /icons/bolt-dark.svg
         light: /icons/bolt-light.svg      
       title:  Calculate Linux
-      details: Дистрибутив Linux основан на проекте Gentoo Linux.
+      details: Основан на Gentoo Linux. Включен в реестр Российского ПО..
 
     - icon:
         dark: /icons/bolt-dark.svg
         light: /icons/bolt-light.svg
       title:  Ульяновск.BSD
-      details: Операционная система, включена в реестр российского ПО..
+      details: Операционная система, включена в реестр Российского ПО..
 ---
 
 
