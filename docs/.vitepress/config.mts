@@ -11,7 +11,7 @@ export default defineConfig({
     logo: '/icons/businessman.svg',
     nav: [
       { text: 'Домой', link: '/' },
-      { text: 'Заметки', link: '/calculate' },
+      { text: 'Заметки', link: '/vitepress' },
     ],
 
     sidebar: [
