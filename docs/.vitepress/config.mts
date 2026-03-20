@@ -15,6 +15,9 @@ export default defineConfig({
     ],
 
     sidebar: [
+      items: [
+        { text: 'VitePress', link: '/vitepress' },
+      ],
       {
         text: 'Calculate',
         collapsed: true,
@@ -34,7 +37,6 @@ export default defineConfig({
         items: [
           { text: 'Группы программ', link: '/slackware/categories'},
           { text: 'Markdown', link: '/markdown' },
-          { text: 'VitePress', link: '/vitepress' },
           { text: 'Hi', link: '/ex/hi_too' }
         ]
       }
