@@ -33,7 +33,8 @@ export default defineConfig({
         text: 'Slackware',
         collapsed: true,
         items: [
-          { text: 'Группы программ', link: '/slackware/categories'},
+          { text: 'About Slackware', link: '/slackware/about_slackware' },
+          { text: 'Группы программ', link: '/slackware/categories' },
           { text: 'Slackpkg', link: '/slackware/slackpkg' },
           { text: 'Pkgtool', link: '/slackware/pkgtool' }
         ]
