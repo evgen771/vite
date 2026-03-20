@@ -32,9 +32,9 @@ export default defineConfig({
         text: 'Slackware',
         collapsed: true,
         items: [
+          { text: 'Группы программ', link: '/slackware/categories'},
           { text: 'Markdown', link: '/markdown' },
           { text: 'VitePress', link: '/vitepress' },
-          { text: 'Hi', link: '/hi' },
           { text: 'Hi', link: '/ex/hi_too' }
         ]
       }
