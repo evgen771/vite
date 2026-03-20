@@ -16,7 +16,7 @@ export default defineConfig({
 
     sidebar: [
       items: [
-        { text: 'VitePress', link: '/vitepress' },
+        { text: 'VitePress', link: '/vitepress' }
       ],
       {
         text: 'Calculate',
