@@ -79,8 +79,8 @@ t
 
 `mount /dev/sda3 /mnt/gentoo`
 ```bash
-mkdir /mnt/gentoo/boot
-mount /dev/sda1 /mnt/gentoo/boot
+mkdir /mnt/gentoo/efi
+mount /dev/sda1 /mnt/gentoo/efi
 ```
 ### Скачивание архива stage
 
@@ -91,6 +91,8 @@ wget <PASTED_STAGE_FILE_URL>
 После скачивания и проверки файл stage необходимо распаковать с помощью tar :
 
 `tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner`
+
+`emerge-webrsync`
 
 ### Настройка компиляции 
 
@@ -112,6 +114,19 @@ GENTOO_MIRRORS="http://mirror.yandex.ru/gentoo-distfiles/"
 
 `cp --dereference /etc/resolv.conf /mnt/gentoo/etc/`
 
+```bash
+(очень хитрая) ошибка DNS в chroot:
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+Но после chroot иногда DNS всё равно не работает.
+Проверка:
+ping gentoo.org
+Если не работает — emerge будет падать.
+Исправление:
+nano /etc/resolv.conf
+Добавить:
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+```
 ```bash
 mount --types proc /proc /mnt/gentoo/proc
 mount --rbind /sys /mnt/gentoo/sys
@@ -206,7 +221,13 @@ Gentoo предлагает два варианта - `gentoo-kernel` и `gentoo
 Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`
 
 `emerge --ask sys-kernel/gentoo-kernel-bin`
-
+```bash
+ls /boot
+Ты должен увидеть что-то вроде:
+vmlinuz-6.x.x-gentoo
+initramfs-6.x.x-gentoo
+Если /boot пустой — GRUB не загрузится.
+```
 ### Создание файла fstab
 
 ```bash
@@ -250,7 +271,7 @@ rc-service dhcpcd start
 `emerge --ask --verbose sys-boot/grub`
 
 ```bash
-grub-install --efi-directory=/boot
+grub-install --efi-directory=/efi
 Установка для платформы x86_64-efi.
 Установка завершена. Ошибок не обнаружено.
 ```
