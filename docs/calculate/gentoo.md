@@ -3,6 +3,7 @@ sudo su -
 passwd root     # root
 passwd gentoo   # user
 ```
+
 ### Схема разделов по умолчанию
 
 ```bash
@@ -10,6 +11,7 @@ passwd gentoo   # user
 /dev/sda2 	н/д. 	swap 	 swap 	
 /dev/sda3 	/ 	    ext4 	 root
 ```
+
 ### Просмотр текущей разметки разделов. FDISK.
 
 ```bash
@@ -77,20 +79,26 @@ mkswap /dev/sda2
 swapon /dev/sda2
 mkfs.ext4 /dev/sda3
 ```
+
 ### Монтирование
+
 ```bash
 mkdir /mnt/gentoo
 mount /dev/sda3 /mnt/gentoo
-mkdir /mnt/gentoo/efi
+mkdir -p /mnt/gentoo/efi
+mount /dev/sda1 /mnt/gentoo/efi
 ```
 
 ### Скачивание архива stage
+
+Перейти в каталог установки:
 
 ```bash
 cd /mnt/gentoo
 wget <PASTED_STAGE_FILE_URL>
 ```
-После скачивания и проверки файл stage необходимо распаковать с помощью tar :
+
+После скачивания необходимо распаковать с помощью tar :
 
 `tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner`
 
@@ -189,7 +197,7 @@ ru_RU.UTF-8 UTF-8
 
 Команда `eselect locale list` выведет список доступных локалей 
 
-Команда `eselect locale set <NUMBER>` установит необходимую локаль:
+Команда `eselect locale set <№>` установит необходимую локаль:
 
 `eselect locale set №`
 
@@ -222,26 +230,27 @@ sys-kernel/installkernel grub
 
 `emerge --ask sys-kernel/installkernel`
 
-Gentoo предлагает два варианта - `gentoo-kernel` и `gentoo-kernel-bin`
+Gentoo предлагает два варианта:
+
+`gentoo-kernel` и `gentoo-kernel-bin`
 
 `emerge --ask sys-kernel/gentoo-kernel-bin`
 
 ```bash
 ls /boot
+
 Ты должен увидеть что-то вроде:
 vmlinuz-6.x.x-gentoo
 initramfs-6.x.x-gentoo
 Если /boot пустой — GRUB не загрузится.
 ```
 
-Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`
-
-`emerge --ask sys-kernel/gentoo-kernel-bin`
+*Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`*
 
 ### Создание файла fstab
 
 ```bash
-etc/fstab  # Полный пример /etc/fstab для систем UEFI
+nano etc/fstab  # Полный пример /etc/fstab для систем UEFI
 
 /dev/sda1   /boot  vfat  defaults,noatime  0 2
 /dev/sda2   none   swap  sw                0 0
@@ -256,11 +265,6 @@ etc/fstab  # Полный пример /etc/fstab для систем UEFI
 
 DHCP через dhcpcd (любая система инициализации)
 
-В большинстве локальных сетей работает сервер DHCP.  
-В этом случае для получения IP-адреса рекомендуется использовать программу dhcpcd.
-
-Чтобы установить:
-
 `emerge --ask net-misc/dhcpcd`
 
 Чтобы включить и затем запустить сервис на системах с OpenRC:
@@ -272,7 +276,7 @@ rc-service dhcpcd start
 ### Файл hosts
 
 ```bash
-/etc/hosts  # Внесение сетевой информации
+nano /etc/hosts  # Внесение сетевой информации
 
 Это обязательные настройки для текущей системы
 
@@ -287,12 +291,17 @@ rc-service dhcpcd start
 
 `emerge --ask --verbose sys-boot/grub`
 
+Для систем UEFI:
+
 ```bash
 grub-install --efi-directory=/efi
 
 Установка для платформы x86_64-efi.
 Установка завершена. Ошибок не обнаружено.
 ```
+
+Для создания окончательной конфигурации GRUB, запустите команду `grub-mkconfig`:
+
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
 
