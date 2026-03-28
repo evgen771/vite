@@ -1,20 +1,19 @@
-
-```bash
 sudo su -
 passwd root     # root
 passwd gentoo   # user
-```
+
 ### Схема разделов по умолчанию
-```bash
+
 /dev/sda1 	/efi 	vfat 	 EFI (ESP)
 /dev/sda2 	н/д. 	swap 	 swap 	
 /dev/sda3 	/ 	    ext4 	 root
-```
+
 ### Просмотр текущей разметки разделов. FDISK.
-```bash
+
 fdisk -l
+
 fdisk /dev/sda
-```
+
 Нажмите на клавишу p для отображения текущей конфигурации разделов
 
 ---
@@ -70,19 +69,24 @@ t
 
 ### Создание файловых систем
 
+EFI system partition (/dev/sda1) должен быть отформатирован как FAT32:
+
 `mkfs.vfat -F 32 /dev/sda1`
 `mkswap /dev/sda2`
 `swapon /dev/sda2`
 `mkfs.ext4 /dev/sda3`
 
 ### Монтирование
-
-`mount /dev/sda3 /mnt/gentoo`
 ```bash
+mkdir /mnt/gentoo
+mount /dev/sda3 /mnt/gentoo
 mkdir /mnt/gentoo/efi
 mount /dev/sda1 /mnt/gentoo/efi
 ```
+
 ### Скачивание архива stage
+
+Перед загрузкой файла среды выполнения необходимо установить текущий каталог в местоположение точки монтирования, использованной для установки:
 
 `cd /mnt/gentoo`
 
@@ -98,6 +102,7 @@ wget <PASTED_STAGE_FILE_URL>
 
 `nano /mnt/gentoo/etc/portage/make.conf`
 
+Пример для переменных CFLAGS и CXXFLAGS
 ```bash
 COMMON_FLAGS="-O2 -pipe -march=x86-64-v3"
 CFLAGS="${COMMON_FLAGS}"
@@ -111,6 +116,8 @@ USE="X wayland dbus elogind networkmanager"
 GENTOO_MIRRORS="http://mirror.yandex.ru/gentoo-distfiles/"
 ```
 ### Переход в изолированную среду
+
+Копирование информации о DNS
 
 `cp --dereference /etc/resolv.conf /mnt/gentoo/etc/`
 
@@ -127,6 +134,7 @@ nano /etc/resolv.conf
 nameserver 8.8.8.8
 nameserver 1.1.1.1
 ```
+
 ```bash
 mount --types proc /proc /mnt/gentoo/proc
 mount --rbind /sys /mnt/gentoo/sys
@@ -178,7 +186,6 @@ ru_RU.UTF-8 UTF-8
 *Чтобы убедится, что выбранные локали теперь доступны, запустите команду locale -a*
 
 ### Выбор локали 
-
 установить локаль для всей системы, используется `eselect` для этого, только теперь с модулем `locale`.
 
 Команда `eselect locale list` выведет список доступных локалей 
@@ -218,9 +225,8 @@ sys-kernel/installkernel grub
 
 Gentoo предлагает два варианта - `gentoo-kernel` и `gentoo-kernel-bin`
 
-Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`
-
 `emerge --ask sys-kernel/gentoo-kernel-bin`
+
 ```bash
 ls /boot
 Ты должен увидеть что-то вроде:
@@ -228,6 +234,11 @@ vmlinuz-6.x.x-gentoo
 initramfs-6.x.x-gentoo
 Если /boot пустой — GRUB не загрузится.
 ```
+
+Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`
+
+`emerge --ask sys-kernel/gentoo-kernel-bin`
+
 ### Создание файла fstab
 
 ```bash
@@ -243,6 +254,13 @@ etc/fstab  # Полный пример /etc/fstab для систем UEFI
 `echo gentoo > /etc/hostname`
 
 ### Сеть
+
+DHCP через dhcpcd (любая система инициализации)
+
+В большинстве локальных сетей работает сервер DHCP.  
+В этом случае для получения IP-адреса рекомендуется использовать программу dhcpcd.
+
+Чтобы установить:
 
 `emerge --ask net-misc/dhcpcd`
 
@@ -270,11 +288,15 @@ rc-service dhcpcd start
 
 `emerge --ask --verbose sys-boot/grub`
 
+Для систем UEFI:
 ```bash
 grub-install --efi-directory=/efi
 Установка для платформы x86_64-efi.
 Установка завершена. Ошибок не обнаружено.
 ```
+
+Для создания окончательной конфигурации GRUB, запустите команду `grub-mkconfig`:
+
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
 Создание файла grub.cfg ...
