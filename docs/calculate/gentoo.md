@@ -1,9 +1,7 @@
 ```bash
 sudo su -
 passwd root     # root
-passwd gentoo   # user
 ```
-
 ### Схема разделов по умолчанию
 
 ```bash
@@ -18,7 +16,7 @@ passwd gentoo   # user
 fdisk -l
 fdisk /dev/sda
 ```
-Нажмите на клавишу p для отображения текущей конфигурации разделов
+Нажмите на клавишу `p `для отображения текущей конфигурации разделов
 
 ---
 
@@ -73,6 +71,8 @@ t
 
 ### Создание файловых систем
 
+EFI system partition (/dev/sda1) должен быть отформатирован как FAT32:
+
 ```bash
 mkfs.vfat -F 32 /dev/sda1
 mkswap /dev/sda2
@@ -83,7 +83,6 @@ mkfs.ext4 /dev/sda3
 ### Монтирование
 
 ```bash
-mkdir /mnt/gentoo
 mount /dev/sda3 /mnt/gentoo
 mkdir -p /mnt/gentoo/efi
 mount /dev/sda1 /mnt/gentoo/efi
@@ -91,18 +90,15 @@ mount /dev/sda1 /mnt/gentoo/efi
 
 ### Скачивание архива stage
 
-Перейти в каталог установки:
+Перейти в каталог установки и скачать:
 
 ```bash
 cd /mnt/gentoo
 wget <PASTED_STAGE_FILE_URL>
 ```
-
-После скачивания необходимо распаковать с помощью tar :
+После скачивания и проверки файл stage необходимо распаковать с помощью `tar`:
 
 `tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner`
-
-`emerge-webrsync`
 
 ### Настройка компиляции 
 
@@ -117,7 +113,7 @@ FFLAGS="${COMMON_FLAGS}"
 MAKEOPTS="-j$(nproc)"
 ACCEPT_LICENSE="*"
 VIDEO_CARDS="intel"
-USE="X wayland dbus elogind networkmanager"
+USE="X wayland dbus elogind networkmanager -telemetry"
 GENTOO_MIRRORS="http://mirror.yandex.ru/gentoo-distfiles/"
 ```
 ### Переход в изолированную среду
@@ -125,20 +121,6 @@ GENTOO_MIRRORS="http://mirror.yandex.ru/gentoo-distfiles/"
 Копирование информации о DNS
 
 `cp --dereference /etc/resolv.conf /mnt/gentoo/etc/`
-
-```bash
-(очень хитрая) ошибка DNS в chroot:
-cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
-Но после chroot иногда DNS всё равно не работает.
-Проверка:
-ping gentoo.org
-Если не работает — emerge будет падать.
-Исправление:
-nano /etc/resolv.conf
-Добавить:
-nameserver 8.8.8.8
-nameserver 1.1.1.1
-```
 
 ```bash
 mount --types proc /proc /mnt/gentoo/proc
@@ -156,12 +138,23 @@ chroot /mnt/gentoo /bin/bash
 source /etc/profile
 export PS1="(chroot) ${PS1}"
 ```
+```bash
+(очень хитрая) ошибка DNS в chroot:
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+Но после chroot иногда DNS всё равно не работает.
+Проверка:
+ping gentoo.org
+Если не работает — emerge будет падать.
+Исправление:
+nano /etc/resolv.conf
+Добавить:
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+```
 
 ### Синхронизация Portage
 
 ```bash
-emerge-webrsync
-или
 emerge --sync
 ```
 ### Выбор профиля 
@@ -223,6 +216,7 @@ Sound Open Firmware (SOF) — это новый аудиодрайвер с от
 
 ```bash
 nano /etc/portage/package.use/installkernel
+
 sys-kernel/installkernel dracut
 sys-kernel/installkernel grub
 ```
@@ -230,9 +224,11 @@ sys-kernel/installkernel grub
 
 `emerge --ask sys-kernel/installkernel`
 
-Gentoo предлагает два варианта:
+Gentoo предлагает два варианта: 
 
 `gentoo-kernel` и `gentoo-kernel-bin`
+
+Установим бинарный пакет(быстро):
 
 `emerge --ask sys-kernel/gentoo-kernel-bin`
 
@@ -245,12 +241,14 @@ initramfs-6.x.x-gentoo
 Если /boot пустой — GRUB не загрузится.
 ```
 
-*Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`*
+Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`:
+
+`emerge --ask sys-kernel/gentoo-kernel`
 
 ### Создание файла fstab
 
 ```bash
-nano etc/fstab  # Полный пример /etc/fstab для систем UEFI
+etc/fstab  # Полный пример /etc/fstab для систем UEFI
 
 /dev/sda1   /boot  vfat  defaults,noatime  0 2
 /dev/sda2   none   swap  sw                0 0
@@ -276,7 +274,7 @@ rc-service dhcpcd start
 ### Файл hosts
 
 ```bash
-nano /etc/hosts  # Внесение сетевой информации
+/etc/hosts  # Внесение сетевой информации
 
 Это обязательные настройки для текущей системы
 
@@ -292,7 +290,6 @@ nano /etc/hosts  # Внесение сетевой информации
 `emerge --ask --verbose sys-boot/grub`
 
 Для систем UEFI:
-
 ```bash
 grub-install --efi-directory=/efi
 
@@ -300,7 +297,7 @@ grub-install --efi-directory=/efi
 Установка завершена. Ошибок не обнаружено.
 ```
 
-Для создания окончательной конфигурации GRUB, запустите команду `grub-mkconfig`:
+Для создания окончательной конфигурации GRUB
 
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -311,6 +308,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 сделанный
 ```
 ### установить чтобы потом не было проблем:
+
 ```bash
 emerge --ask app-admin/sysklogd
 rc-update add sysklogd default
@@ -325,6 +323,7 @@ umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
 reboot
 ```
+
 
 
 
