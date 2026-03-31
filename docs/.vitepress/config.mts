@@ -26,7 +26,8 @@ export default defineConfig({
           { text: 'Команда eix', link: '/calculate/eix' },
           { text: 'Команда emerge', link: '/calculate/emerge' },
           { text: 'Цвета отображения USE-флагов', link: '/calculate/color_use_emerge' },
-          { text: 'Install Gentoo', link: '/calculate/gentoo' }
+          { text: 'Install Gentoo', link: '/calculate/gentoo' },
+          { text: 'Изменение шрифта, размера, раскладки клавиатуры в TTY(консоль)', link: '/calculate/terminus' },
         ]
       },
       
