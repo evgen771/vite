@@ -112,7 +112,7 @@ FFLAGS="${COMMON_FLAGS}"
 MAKEOPTS="-j5"
 ACCEPT_LICENSE="*"
 VIDEO_CARDS="intel"
-USE="X wayland dbus elogind networkmanager -telemetry"
+USE="X wayland dbus elogind networkmanager alsa udev -doc -examples -test -telemetry"
 GENTOO_MIRRORS="http://mirror.yandex.ru/gentoo-distfiles/"
 ```
 ### Переход в изолированную среду
