@@ -17,7 +17,7 @@ export default defineConfig({
     sidebar: [
       { text: 'VitePress', link: '/vitepress' },
       {
-        text: 'Calculate',
+        text: 'Calculate. Gentoo',
         collapsed: true,
         items: [
           { text: 'About Calculate', link: '/calculate/about' },
