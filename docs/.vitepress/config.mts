@@ -28,6 +28,7 @@ export default defineConfig({
           { text: 'Цвета отображения USE-флагов', link: '/calculate/color_use_emerge' },
           { text: 'Install Gentoo', link: '/calculate/gentoo' },
           { text: 'Изменение шрифта, размера, раскладки клавиатуры в TTY(консоль)', link: '/calculate/terminus' },
+          { text: 'Программы для обслуживания системы', link: '/calculate/soft' }
         ]
       },
       
