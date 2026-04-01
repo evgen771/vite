@@ -351,7 +351,7 @@ nano /etc/hosts
 ### GRUB
 
 `echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf`
-`emerge --ask --verbose sys-boot/grub efibootmgr neofetch`
+`emerge --ask --verbose sys-boot/grub efibootmgr`
 
 Для систем UEFI:
 ```bash
