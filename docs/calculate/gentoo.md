@@ -1,3 +1,5 @@
+![](/gentoo/fastfetch.png)
+
 ```bash
 sudo su -
 passwd root     # root
