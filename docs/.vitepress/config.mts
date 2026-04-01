@@ -16,6 +16,7 @@ export default defineConfig({
 
     sidebar: [
       { text: 'VitePress', link: '/vitepress' },
+      { text: 'Arch Insatall', link: '/arch_install_console' },
       {
         text: 'Calculate. Gentoo',
         collapsed: true,
