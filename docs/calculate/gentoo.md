@@ -311,6 +311,16 @@ initramfs-6.x.x-gentoo.img
 
 `genkernel all`
 
+```bash
+Проверьте монтирование:
+mount | grep /boot
+ls -la /boot/
+Должны увидеть что-то вроде:
+vmlinuz-6.x.x-gentoo
+initramfs-6.x.x-gentoo.img
+Если /boot пустой — GRUB не загрузится
+```
+
 ### Если ядро установлено, но не в `/boot`, найдите его и скопируйте
 
 Найдите файл ядра:
