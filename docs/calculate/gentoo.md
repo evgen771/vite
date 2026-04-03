@@ -1,8 +1,26 @@
-![](/gentoo/fastfetch.png)
+[LiveGUI USB Image Gentoo](https://wiki.gentoo.org/wiki/Handbook:AMD64/ru)
+
+---
+
+## About.Focus!!!
+
+Иногда,при установке программ,может выскочить предупреждение:
+
+ * IMPORTANT: config file '/etc/portage/package.use/installkernel' needs updating.
+ * See the CONFIGURATION FILES and CONFIGURATION FILES UPDATE TOOLS
+ * sections of the emerge man page to learn how to update config files.
+
+Лечится так:
+
+- etc-update
+- -3
+- yes
+- Enter
+
+---
 
 ```bash
 sudo su -
-passwd root     # root
 ```
 ### Схема разделов по умолчанию
 
@@ -12,65 +30,12 @@ passwd root     # root
 /dev/sda3 	/ 	    ext4 	 root
 ```
 
-### Просмотр текущей разметки разделов. FDISK.
+### Просмотр текущей разметки разделов. CFDISK.
 
 ```bash
-fdisk -l
-fdisk /dev/sda
+lsblk
+cfdisk
 ```
-Нажмите на клавишу `p `для отображения текущей конфигурации разделов
-
----
-
-### Создание нового disklabel / удаление всех разделов
-
-`g - # чтобы создать новую разметку GPT на диске`
-
-### EFI system partition (ESP)
-
-```bash
-n чтобы создать новый раздел, 
-1 для выбора первого основного раздела. 
-При запросе первого сектора, убедитесь, что он начинается с 2048 (может понадобиться для загрузчика) и нажмите Enter. 
-При запросе последнего сектора введите +1G для создания раздела размером 1 Гбайт
-Пометьте раздел как системный раздел EFI:
-t
-Выбранный раздел 1
-Тип раздела (нажмите L, чтобы отобразить все): 1
-```
-### Swap
-
-```bash
-n чтобы создать новый раздел, 
-2 для создания второго основного раздела, /dev/sda2 
-При появлении запроса первого сектора, введите Enter
-При появлении запроса последнего сектора, наберите +4G (или любой другой размер, необходимый для подкачки) для создания раздела размером 4 ГиБ. 
-t
-Номер раздела (1, 2, по умолчанию 2): 2
-Тип раздела (наберите L, чтобы отобразить все): 19
-Изменен тип раздела с «файловой системы Linux» на «Linux Swap».
-```
-### Root partition
-
-```bash
-n чтобы создать новый раздел. 
-3 чтобы создать третий основной раздел, /dev/sda3.
-При появлении запроса первого сектора, введите Enter
-При запросе последнего сектора нажмите Enter, чтобы создать раздел, занимающий всё оставшееся доступное пространство диска. 
-t
-Номер раздела (1-3, по умолчанию 3): 3
-Тип раздела или псевдоним (наберите L, чтобы отобразить все): 23
-Изменен тип раздела «Файловая система Linux» на «Корневой каталог Linux (x86-64)».
-```
-*После выполнения этих шагов нажмите `p`.  
-Должна отображаться таблица разделов*
-
-### Сохранение разметки разделов
-
-Для сохранения разметки разделов и выхода из `fdisk` введите `w`
-
----
-
 ### Создание файловых систем
 
 EFI system partition (/dev/sda1) должен быть отформатирован как FAT32:
@@ -80,7 +45,6 @@ mkfs.vfat -F 32 /dev/sda1
 mkswap /dev/sda2
 mkfs.ext4 /dev/sda3
 ```
-
 ### Монтирование
 
 ```bash
@@ -88,7 +52,6 @@ mkdir -p /mnt/gentoo
 mount /dev/sda3 /mnt/gentoo
 swapon /dev/sda2
 ```
-
 ### Скачивание архива stage
 
 Перейти в каталог установки и скачать:
@@ -114,12 +77,12 @@ FFLAGS="${COMMON_FLAGS}"
 MAKEOPTS="-j5"
 ACCEPT_LICENSE="*"
 VIDEO_CARDS="intel"
-USE="X wayland dbus elogind networkmanager alsa udev -doc -examples -test -telemetry"
+USE="X wayland dbus elogind networkmanager gtk -doc -example -telemetry"
 GENTOO_MIRRORS="http://mirror.yandex.ru/gentoo-distfiles/"
 ```
 ### Переход в изолированную среду
 
-Копирование информации о DNS
+Копирование информации о DNS:
 
 `cp --dereference /etc/resolv.conf /mnt/gentoo/etc/`
 
@@ -147,19 +110,6 @@ chroot /mnt/gentoo /bin/bash
 source /etc/profile
 export PS1="(chroot) ${PS1}"
 ```
-```bash
-(очень хитрая) ошибка DNS в chroot:
-cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
-Но после chroot иногда DNS всё равно не работает.
-Проверка:
-ping gentoo.org
-Если не работает — emerge будет падать.
-Исправление:
-nano /etc/resolv.conf
-Добавить:
-nameserver 8.8.8.8
-nameserver 1.1.1.1
-```
 ### Подготовка к установке начального загрузчика
 
 ```bash
@@ -179,7 +129,7 @@ eselect profile set №
 ```
 ### CPU_FLAGS_*
 
-**Пользователям рекомендуется установить эту переменную, по желанию одновременно с настройкой `COMMON_FLAGS`**
+Пользователям рекомендуется установить эту переменную, по желанию одновременно с настройкой `COMMON_FLAGS`
 
 Для настройки необходимо выполнить несколько шагов:
 
@@ -205,7 +155,6 @@ emerge --ask --update --deep --newuse @world
 echo "Asia/Kamchatka" > /etc/timezone
 emerge --config sys-libs/timezone-data
 ```
-
 ### Настройки локали 
 
 `nano /etc/locale.gen`
@@ -232,151 +181,55 @@ ru_RU.UTF-8 UTF-8
 
 `env-update && source /etc/profile && export PS1="(chroot) ${PS1}"`
 
-## Настройка ядра
-
----
-
-### Установка файлов прошивки и/или микрокода
-
-На многих системах требуется прошивка, не содержащая свободного программного обеспечения:
-
-`emerge --ask sys-kernel/linux-firmware`
-
-Sound Open Firmware (SOF) — это новый аудиодрайвер с открытым исходным кодом:
-
-`emerge --ask sys-firmware/sof-firmware`
-
-обновления микрокода для процессоров Intel:
-
-`emerge --ask --noreplace sys-firmware/intel-microcode`
-
----
-
 ### Kernel
 
-### Установим пакет installkernel (не ядро). 
+Первое что делаем,устанавливаем linux-firmware.
 
-```bash
-# mkdir -p /etc/portage/package.use
-nano /etc/portage/package.use/installkernel
+- emerge --ask sys-kernel/linux-firmware
 
-sys-kernel/installkernel dracut
-sys-kernel/installkernel grub
-```
-Установите `installkernel`:
+Установим пакет installkernel (не ядро). 
 
-```bash
-emerge --ask sys-kernel/installkernel
-```
-Пакет `installkernel` автоматизирует установку собранного ядра в систему (копирует образ ядра в `/boot`, обновляет символические ссылки и т. д.)
+Однако перед установкой, добавим поддержку Dracut:
+
+- nano /etc/portage/package.use/installkernel
+
+`sys-kernel/installkernel dracut`
 
 ### Установим сам пакет.
 
-Gentoo предлагает два варианта: 
+- emerge --ask sys-kernel/installkernel
 
-`gentoo-kernel` и `gentoo-kernel-bin`
+Gentoo предлагает два варианта - gentoo-kernel и gentoo-kernel-bin. 
 
-Установим бинарный пакет(быстро):
+Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный gentoo-kernel.
 
-`emerge --ask sys-kernel/gentoo-kernel-bin`
+- emerge --ask sys-kernel/gentoo-kernel-bin
 
-### Установим и добавим поддержку Dracut.
+### Проверяем
 
-`emerge --ask sys-kernel/dracut`
+- ls /boot
 
-Сгенерируйте initramfs для текущего ядра:
+### Должны увидеть что-то вроде:
 
-`dracut --force /boot/initramfs-$(uname -r).img $(uname -r)`
+- vmlinuz-6.x.x-gentoo  initramfs-6.x.x-gentoo.img
 
-```bash
-Проверьте монтирование:
-mount | grep /boot
-ls -la /boot/
-Должны увидеть что-то вроде:
-vmlinuz-6.x.x-gentoo
-initramfs-6.x.x-gentoo.img
-Если /boot пустой — GRUB не загрузится
-```
-### Использование genkernel
+*Если /boot пустой — GRUB не загрузится*
 
-Установите genkernel:
-
-`emerge --ask sys-kernel/genkernel`
-
-Пересоберите initramfs:
-
-`genkernel --install initramfs`
-
-пересоберите всё ядро и initramfs:
-
-`genkernel all`
-
-```bash
-Проверьте монтирование:
-mount | grep /boot
-ls -la /boot/
-Должны увидеть что-то вроде:
-vmlinuz-6.x.x-gentoo
-initramfs-6.x.x-gentoo.img
-Если /boot пустой — GRUB не загрузится
-```
-
-### Если ядро установлено, но не в `/boot`, найдите его и скопируйте
-
-Найдите файл ядра:
+### Найдите файл ядра:
 
 ```bash
 find /usr/src -name "vmlinuz*" -o -name "bzImage*"
-```
-Скопируйте в `/boot` (замените путь на найденный):
-
-```bash
-cp /путь/к/найденному/ядру /boot/vmlinuz-$(uname -r)
 ```
 ### Если ядро не скопировалось — скопируйте вручную
 
 ```bash
 cp /usr/src/linux-*/arch/x86/boot/bzImage /boot/vmlinuz-$(uname -r)
+or
+cp /путь/к/найденному/ядру /boot/vmlinuz-$(uname -r)
 dracut -f /boot/initramfs-$(uname -r).img
 ```
----
-
-Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`:
-
-### Теперь, для установки ядра, установим пакет installkernel (не ядро). 
-
-```bash
-# mkdir -p /etc/portage/package.use
-nano /etc/portage/package.use/installkernel
-
-sys-kernel/installkernel dracut
-sys-kernel/installkernel grub
-```
-
-### Установите `installkernel`:
-
-```bash
-emerge --ask sys-kernel/installkernel
-```
-Пакет `installkernel` автоматизирует установку собранного ядра в систему (копирует образ ядра в `/boot`, обновляет символические ссылки и т. д.)
-
-### Соберите ядро из исходников (если не используете готовый бинарный пакет):
-
-```bash
-emerge --ask sys-kernel/gentoo-sources
-```
-### Настройте конфигурацию ядра (например, с помощью `make menuconfig`), затем соберите его:
-   
-```bash
-make
-```
-
-### Установите ядро с помощью `installkernel`:
-
-```bash
-make install
-```
-Эта команда вызовет `installkernel`, который скопирует образ ядра в `/boot` и обновит символические ссылки.
+- ls /boot
+- vmlinuz-6.x.x-gentoo  initramfs-6.x.x-gentoo.img
 
 ### Создание файла fstab
 
@@ -387,7 +240,6 @@ nano etc/fstab  # Полный пример /etc/fstab для систем UEFI
 /dev/sda2   none       swap  sw                0 0
 /dev/sda3   /          ext4  defaults,noatime  0 1
 ```
-
 ### Host
 
 `echo gentoo > /etc/hostname`
@@ -408,7 +260,7 @@ rc-service dhcpcd start
 ### Файл hosts
 
 ```bash
-nano /etc/hosts  
+nano /etc/hosts  # Внесение сетевой информации
 
 Это обязательные настройки для текущей системы
 
