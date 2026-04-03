@@ -232,7 +232,11 @@ ru_RU.UTF-8 UTF-8
 
 `env-update && source /etc/profile && export PS1="(chroot) ${PS1}"`
 
-### Настройка ядра
+## Настройка ядра
+
+---
+
+### Установка файлов прошивки и/или микрокода
 
 На многих системах требуется прошивка, не содержащая свободного программного обеспечения:
 
@@ -246,9 +250,11 @@ Sound Open Firmware (SOF) — это новый аудиодрайвер с от
 
 `emerge --ask --noreplace sys-firmware/intel-microcode`
 
-Теперь, для установки ядра, установим пакет installkernel (не ядро). 
+---
 
-Однако перед установкой, добавим поддержку Dracut.
+### Kernel
+
+### Установим пакет installkernel (не ядро). 
 
 ```bash
 # mkdir -p /etc/portage/package.use
@@ -257,11 +263,14 @@ nano /etc/portage/package.use/installkernel
 sys-kernel/installkernel dracut
 sys-kernel/installkernel grub
 ```
-`emerge -av dracut`
+Установите `installkernel`:
+
+```bash
+emerge --ask sys-kernel/installkernel
+```
+Пакет `installkernel` автоматизирует установку собранного ядра в систему (копирует образ ядра в `/boot`, обновляет символические ссылки и т. д.)
 
 ### Установим сам пакет.
-
-`emerge --ask sys-kernel/installkernel`
 
 Gentoo предлагает два варианта: 
 
@@ -271,28 +280,49 @@ Gentoo предлагает два варианта:
 
 `emerge --ask sys-kernel/gentoo-kernel-bin`
 
-```bash
-ls -la /boot/
+### Установим и добавим поддержку Dracut.
 
+`emerge --ask sys-kernel/dracut`
+
+Сгенерируйте initramfs для текущего ядра:
+
+`dracut --force /boot/initramfs-$(uname -r).img $(uname -r)`
+
+```bash
+Проверьте монтирование:
+mount | grep /boot
+ls -la /boot/
 Должны увидеть что-то вроде:
 vmlinuz-6.x.x-gentoo
 initramfs-6.x.x-gentoo.img
-Если /boot пустой — GRUB не загрузится.
+Если /boot пустой — GRUB не загрузится
 ```
----
+### Использование genkernel
+
+Установите genkernel:
+
+`emerge --ask sys-kernel/genkernel`
+
+Пересоберите initramfs:
+
+`genkernel --install initramfs`
+
+пересоберите всё ядро и initramfs:
+
+`genkernel all`
 
 ### Если ядро установлено, но не в `/boot`, найдите его и скопируйте
 
 Найдите файл ядра:
 
-   ```bash
-   find /usr/src -name "vmlinuz*" -o -name "bzImage*"
-   ```
+```bash
+find /usr/src -name "vmlinuz*" -o -name "bzImage*"
+```
 Скопируйте в `/boot` (замените путь на найденный):
 
-   ```bash
-   cp /путь/к/найденному/ядру /boot/vmlinuz-$(uname -r)
-   ```
+```bash
+cp /путь/к/найденному/ядру /boot/vmlinuz-$(uname -r)
+```
 ### Если ядро не скопировалось — скопируйте вручную
 
 ```bash
@@ -303,9 +333,40 @@ dracut -f /boot/initramfs-$(uname -r).img
 
 Если хотите сами собрать ядро, сконфигурировать его под своё железо и получить опыт сборки ядер, то берите стандартный `gentoo-kernel`:
 
-`emerge --ask sys-kernel/gentoo-kernel`
+### Теперь, для установки ядра, установим пакет installkernel (не ядро). 
 
----
+```bash
+# mkdir -p /etc/portage/package.use
+nano /etc/portage/package.use/installkernel
+
+sys-kernel/installkernel dracut
+sys-kernel/installkernel grub
+```
+
+### Установите `installkernel`:
+
+```bash
+emerge --ask sys-kernel/installkernel
+```
+Пакет `installkernel` автоматизирует установку собранного ядра в систему (копирует образ ядра в `/boot`, обновляет символические ссылки и т. д.)
+
+### Соберите ядро из исходников (если не используете готовый бинарный пакет):
+
+```bash
+emerge --ask sys-kernel/gentoo-sources
+```
+### Настройте конфигурацию ядра (например, с помощью `make menuconfig`), затем соберите его:
+   
+```bash
+make
+```
+
+### Установите ядро с помощью `installkernel`:
+
+```bash
+make install
+```
+Эта команда вызовет `installkernel`, который скопирует образ ядра в `/boot` и обновит символические ссылки.
 
 ### Создание файла fstab
 
