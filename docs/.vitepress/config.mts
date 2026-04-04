@@ -24,13 +24,13 @@ export default defineConfig({
           { text: 'About Calculate', link: '/calculate/about' },
           { text: 'Бинарность лечится...', link: '/calculate/calculate-bin' },
           { text: 'Вопрос - Ответ', link: '/calculate/calculate_ask' },
+          { text: 'Программы для обслуживания системы', link: '/calculate/soft' },
           { text: 'Команда eix', link: '/calculate/eix' },
           { text: 'Команда emerge', link: '/calculate/emerge' },
           { text: 'Цвета отображения USE-флагов', link: '/calculate/color_use_emerge' },
           { text: 'Install Gentoo', link: '/calculate/gentoo' },
           { text: 'Fdisk', link: '/calculate/fdisk' },
           { text: 'Изменение шрифта, размера, раскладки клавиатуры в TTY(консоль)', link: '/calculate/terminus' },
-          { text: 'Программы для обслуживания системы', link: '/calculate/soft' }
         ]
       },
       
